@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ApiController!{% endblock %}
+
+{% block body %}
+
+<ul>
+
+{% for currentArticle in headlines.articles %}
+
+<li>{{ currentArticle.title }}</li>
+
+{% endfor %}
+
+</ul>
+
+{% endblock %}
