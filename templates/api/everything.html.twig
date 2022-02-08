@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ApiController!
+{% endblock %}
+
+{% block body %}
+
+<h1>Tous les articles</h1>
+
+	<div class="container-fluid">
+		<div class="row d-flex">
+		
+			{% for currentArticle in allNews.articles %}
+
+				<div class="image col-xl-4 col-sm-12">
+					<a href="{{ currentArticle.url }}">
+						<div class="card">
+							{% if (currentArticle.urlToImage) %}
+								<img src="{{ currentArticle.urlToImage }}" class="img-fluid" alt="">
+							{% else %}
+								<img src="{{ asset("img/no-img.jpg") }}" class="img-fluid" alt="">
+							{% endif %}
+							<h2 class="carousel-caption">{{ currentArticle.title }}</h2>
+						</div>
+					</a>
+				</div>
+
+			{% endfor %}
+
+		</div>
+	</div>
+
+{% endblock %}
