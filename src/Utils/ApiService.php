@@ -10,8 +10,6 @@ class ApiService {
 
     private $apiKey = "e06a30d91fdf4208a0a9bc02e37b9153";
 
-    private $category = "health";
-
     public function __construct(HttpClientInterface $client)
     {
         $this->client = $client;
@@ -39,14 +37,19 @@ class ApiService {
         return $response->toArray();
     }
 
-    public function getSearchedNews() {
-
-    }
-
-    public function getResultsByCategory() {
+    public function getSearchedNews($currentSearch) {
         $response = $this->client->request(
             'GET',
-            'https://newsapi.org/v2/top-headlines?language=fr&category=' . $this->category . '&apiKey=' . $this->apiKey
+            'https://newsapi.org/v2/everything?language=fr&q=' . $currentSearch . '&searchIn=title&apiKey=' . $this->apiKey
+        );
+
+        return $response->toArray();
+    }
+
+    public function getResultsByCategory($category) {
+        $response = $this->client->request(
+            'GET',
+            'https://newsapi.org/v2/top-headlines?language=fr&category=' . $category . '&apiKey=' . $this->apiKey
         );
 
         return $response->toArray();
