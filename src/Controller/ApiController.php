@@ -27,10 +27,15 @@ class ApiController extends AbstractController
     {
         $allNews = $api->getAllNews();
 
-        return $this->render('api/everything.html.twig', [
+        $response = $this->render('api/everything.html.twig', [
             'allNews' => $allNews,
             'categories' => $this->categoriesArray
         ]);
+
+        $response->setSharedMaxAge(3600);
+
+        return $response;
+
     }
 
     /**
@@ -40,10 +45,14 @@ class ApiController extends AbstractController
     {
         $headlines = $api->getTopHeadlines();
 
-        return $this->render('api/headlines.html.twig', [
+        $response = $this->render('api/headlines.html.twig', [
             'headlines' => $headlines,
             'categories' => $this->categoriesArray
         ]);
+
+        $response->setSharedMaxAge(3600);
+
+        return $response;
     }
 
     /**
@@ -62,24 +71,40 @@ class ApiController extends AbstractController
         $resultsByCategory = $api->getResultsByCategory($currentCategory);
 
 
-        return $this->render('api/resultsByCategory.html.twig', [
+        $response = $this->render('api/resultsByCategory.html.twig', [
             'resultsByCategory' => $resultsByCategory,
             'categories' => $this->categoriesArray,
             'frenchCategory' => $frenchCategory
         ]);
+
+        $response->setSharedMaxAge(3600);
+
+        return $response;
     }
 
     /**
-     * @Route("/sources", name="sources")
+     * @Route("/rss", name="rss")
      */
-    public function sources(ApiService $api): Response
+    public function rss(Request $request): Response
     {
-        $sources = $api->getSources();
+        
+        if($request->query->get("category") == "environment") {
+            $rss = simplexml_load_file("https://www.france24.com/fr/planète/rss");
+            $theme = "Environnement";
+        } else {
+            $rss = simplexml_load_file("https://www.francetvinfo.fr/politique.rss");
+            $theme = "Politique";
+        }
 
-        return $this->render('api/sources.html.twig', [
-            'sources' => $sources,
+        $response = $this->render('rss.html.twig', [
+            'rss' => $rss->channel->item,
+            'theme' => $theme,
             'categories' => $this->categoriesArray
         ]);
+
+        $response->setSharedMaxAge(3600);
+
+        return $response;
     }
 
     /**
@@ -91,10 +116,14 @@ class ApiController extends AbstractController
 
         $searchResults = $api->getSearchedNews($currentSearch);
 
-        return $this->render('api/search.html.twig', [
+        $response = $this->render('api/search.html.twig', [
             'searchResults' => $searchResults,
             'categories' => $this->categoriesArray,
             'currentSearch' => $currentSearch
         ]);
+
+        $response->setSharedMaxAge(3600);
+
+        return $response;
     }
 }
