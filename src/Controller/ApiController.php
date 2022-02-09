@@ -27,15 +27,10 @@ class ApiController extends AbstractController
     {
         $allNews = $api->getAllNews();
 
-        $response = $this->render('api/everything.html.twig', [
+        return $this->render('api/everything.html.twig', [
             'allNews' => $allNews,
             'categories' => $this->categoriesArray
         ]);
-
-        $response->setSharedMaxAge(3600);
-
-        return $response;
-
     }
 
     /**
@@ -45,14 +40,10 @@ class ApiController extends AbstractController
     {
         $headlines = $api->getTopHeadlines();
 
-        $response = $this->render('api/headlines.html.twig', [
+        return $this->render('api/headlines.html.twig', [
             'headlines' => $headlines,
             'categories' => $this->categoriesArray
         ]);
-
-        $response->setSharedMaxAge(3600);
-
-        return $response;
     }
 
     /**
@@ -71,15 +62,11 @@ class ApiController extends AbstractController
         $resultsByCategory = $api->getResultsByCategory($currentCategory);
 
 
-        $response = $this->render('api/resultsByCategory.html.twig', [
+        return $this->render('api/resultsByCategory.html.twig', [
             'resultsByCategory' => $resultsByCategory,
             'categories' => $this->categoriesArray,
             'frenchCategory' => $frenchCategory
         ]);
-
-        $response->setSharedMaxAge(3600);
-
-        return $response;
     }
 
     /**
@@ -96,15 +83,11 @@ class ApiController extends AbstractController
             $theme = "Politique";
         }
 
-        $response = $this->render('rss.html.twig', [
+        return $this->render('rss.html.twig', [
             'rss' => $rss->channel->item,
             'theme' => $theme,
             'categories' => $this->categoriesArray
         ]);
-
-        $response->setSharedMaxAge(3600);
-
-        return $response;
     }
 
     /**
@@ -116,14 +99,10 @@ class ApiController extends AbstractController
 
         $searchResults = $api->getSearchedNews($currentSearch);
 
-        $response = $this->render('api/search.html.twig', [
+       return $this->render('api/search.html.twig', [
             'searchResults' => $searchResults,
             'categories' => $this->categoriesArray,
             'currentSearch' => $currentSearch
         ]);
-
-        $response->setSharedMaxAge(3600);
-
-        return $response;
     }
 }
