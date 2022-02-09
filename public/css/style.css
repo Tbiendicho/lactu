@@ -7,7 +7,11 @@ nav {
     background: rgb(131,58,180);
     background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(215,162,2,1) 100%, rgba(252,176,69,1) 100%);
     padding: 0 1em;
-    border: none;
+    
+}
+
+.navbar {
+    --bs-bg-opacity: 0;
 }
 
 .navbar-brand {
@@ -24,6 +28,11 @@ nav {
     color: white !important;
     font-weight: bold;
     font-size: 1em;
+}
+
+.nav-item {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
 }
 
 h1 {
@@ -82,7 +91,7 @@ h2 {
     border-radius: 30px;
   }
 
-  @media (max-width: 991.98px) {
+@media (max-width: 991.98px) {
 
     .nav-link, .searchbar {
         font-size: 2em;
@@ -101,4 +110,32 @@ h2 {
         font-size: 5em;
         margin-top: 0.5em;
     }
-   }
+
+    .btn {
+        font-size: 1.5em;
+    }
+
+    h1 {
+        font-size: 3em;
+    }
+
+    h2 {
+        font-size: 2em;
+    }
+
+}
+
+@media (min-width: 1400px) and (max-width: 1600px) {
+
+    .image {
+        height: 300px;
+    }
+
+    h2 {
+        font-size: 1em;
+    }
+
+}
+
+
+

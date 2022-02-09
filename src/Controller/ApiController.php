@@ -32,7 +32,7 @@ class ApiController extends AbstractController
             'categories' => $this->categoriesArray
         ]);
 
-        $response->setSharedMaxAge(3600);
+        $response->setSharedMaxAge(600);
 
         return $response;
 
@@ -50,7 +50,7 @@ class ApiController extends AbstractController
             'categories' => $this->categoriesArray
         ]);
 
-        $response->setSharedMaxAge(3600);
+        $response->setSharedMaxAge(600);
 
         return $response;
     }
@@ -77,7 +77,7 @@ class ApiController extends AbstractController
             'frenchCategory' => $frenchCategory
         ]);
 
-        $response->setSharedMaxAge(3600);
+        $response->setSharedMaxAge(600);
 
         return $response;
     }
@@ -102,7 +102,7 @@ class ApiController extends AbstractController
             'categories' => $this->categoriesArray
         ]);
 
-        $response->setSharedMaxAge(3600);
+        $response->setSharedMaxAge(600);
 
         return $response;
     }
@@ -122,7 +122,7 @@ class ApiController extends AbstractController
             'currentSearch' => $currentSearch
         ]);
 
-        $response->setSharedMaxAge(3600);
+        $response->setSharedMaxAge(600);
 
         return $response;
     }
