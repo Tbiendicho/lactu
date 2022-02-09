@@ -8,7 +8,8 @@ class ApiService {
 
     private $client;
 
-    private $apiKey = "e06a30d91fdf4208a0a9bc02e37b9153";
+    // private $apiKey = "e06a30d91fdf4208a0a9bc02e37b9153";
+    private $apiKey = "61ef8f6bbeb24c36b624a32ef9c56dbf";
 
     public function __construct(HttpClientInterface $client)
     {
